@@ -4,6 +4,7 @@ let id = 0
 
 module.exports = {
     create: (req, res) => {
+        console.log(req)
         const {text, time} = req.body
         messages.push({text, time, id})
         id += 1
@@ -32,11 +33,9 @@ module.exports = {
     delete: (req, res) => {
         const deleteID = req.params.id
         const deleteMessage = messages.findIndex(message => message.id == deleteID)
-        messages.splice(deleteID, 1)
+        messages.splice(deleteMessage, 1)
 
         res.status(200).send(messages)
     }
 }
 
-
-export default messageHandler
